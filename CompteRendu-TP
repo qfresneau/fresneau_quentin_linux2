@@ -1,0 +1,27 @@
+Vendredi 18/11/2016:
+Installation de la machine virtuel Debian dans VirtualBox.
+Installation des packets (sous root) aptitude  install lynx sudo tcpdump vim.
+
+SUDO
+Prise d'information sur commande sudo.
+Droit d'accès sudo pour notre utilisateur:
+	- visudo (et non vim /etc/sudoers) qui permet d'éditer le fichier /etc/sudoers
+	- rajouter la ligne: nomutilisateur ALL=(ALL:ALL) ALL
+	- enregistrer et relancer le service sudo (service sudo restart)
+	- tester si l'utilisateur a bien les droit de sudo
+Nom des groupes de l'utilisateur (avec la commande groups):
+	- cdrom		- floppy	- audio		- dip
+	- video		- plugdev	- netdev	- bluetooth
+
+CLONAGE
+Pour faire un clone de la VM "debian_base", il suffi de faire un clic droit sur celle-ci et de cliquer sur "Cloner" (ou raccourci Ctrl+O).
+
+SNAPSHOT
+rm -rf / (cette ligne de commande supprime tout les fichiers)
+En essayant de relancer le snapshot, on tombe sur grub rescue puisque tout à été supprimer au préalable.
+Il suffi de restaurer le snapshot "Avant rm" afin de pouvoir relancer la VM.
+
+
+CONFIGURATION RÉSEAUX
+
+
