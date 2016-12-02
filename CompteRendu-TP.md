@@ -91,19 +91,20 @@ sudo service isc-dhcp-server restart
 
 sudo nano /etc/network/interfaces :
 
-# The primary network interface
-allow-hotplug eth0
-iface eth0 inet dhcp
 
-allow-hotplug eth1
-iface eth1 inet static
-        address 192.168.1.254
-        netmask 255.255.255.0
+`# The primary network interface`
+`allow-hotplug eth0`
+`iface eth0 inet dhcp`
 
-allow-hotplug eth2
-iface eth2 inet static
-        address 192.168.2.254
-        netmask 255.255.255.0
+`allow-hotplug eth1`
+`iface eth1 inet static`
+`        address 192.168.1.254`
+`        netmask 255.255.255.0`
+
+`allow-hotplug eth2`
+`iface eth2 inet static`
+`        address 192.168.2.254`
+`        netmask 255.255.255.0`
 
 
 **Sur la VM Serveur_web :
