@@ -33,18 +33,26 @@ On constate que l'on peut naviguer sur internet avec des lignes de commandes lor
 ##TP2
 =====
 ####FEUILLE DE ROUTE
+
 0) Configuration de la carte réseau de la VM "Gateway" en mode d'accès réseau par pont.
+
 1) Il suffit de faire la commande apt-get install ssh (qui va installer toutes les autres librairies dont on aura besoin) ou avec la commande aptitude ssh.
 Il faut néanmoins veiller avant celà à bien se connecter au réseau avec lynx.
+
 2) Pour se connecter en ssh, il suffit de faire la commande ip a et de selectionner l'adresse IP de la VM Gateaway. Une fois cela réalisé, il faut lancer la commande ssh nomutilisateur@adresseIPdelaVM sur la terminal de la machine.
 En essayant avec l'utilisateur root, un message apparait lorsqu'on entre le mot de passe qui nous informe que nous n'avons pas la permission.
+
 3) Pour la modification du port de lecture de ssh, il suffit d'ouvrir le fichier sshd_config via la commande nano /etc/ssh/sshd_config et de modifier le port (ici 22 en 26).
 Veiller ici à exécuter cette commande en super utilisateur sinon la permission ne sera pas accordée.
 En réessayant la connection ssh quentin@192.168.99.132 sur le terminal, on observe que la connection est impossible puisqu'il faut préciser le port sur lequel on veut se connecter ce qui donne ssh quentin@192.168.99.132 -p 26.
+
 4) Pour commencer, il faut lancer la commande ssh-keygen sur le terminal de l'ordinateur afin de créer une clé ssh. Suite à ça, il faut envoyer la clé publique vers le port de la machine souhaité (ici la VM) avec la commande ssh-copy-id -i ~/.ssh/id_rsa.pub quentin@192.168.99.132 -p 26. Après cela, le terminal nous demande le mot de passe de la session de la VM afin de se connecter dirrectement à la VM (sans demande de password) les prochaines fois.
+
 5) Une fois l'échange de clé réalisé, il suffit de lancer la commande ssh quentin@192.168.99.132 -p 26
+
 6) L'installation des paquets pour le serveur dhcp se fait grâce à la commande apt-get install isc-dhcp-server en veillant encore une fois à bien être connecter au réseau.
 Note : On ne peut être connecter à internet avec la VM et l'ordinateur en même temps ?
+
 7)
 **Sur le terminal de l'odrinateur (en ssh)
 mv dhcpd.conf dhcpd.conf.old (pour expliquer option)
@@ -52,40 +60,40 @@ fichier de base garder.
 
 nano /etc/dhcp/dhcp.conf :
 
-# Le fichier contient (aide dans les commentaires)
-ddns-update-style none;
-# DNS de Google
-# Si la machine sert de DNS
-default-lease-time 600;
-max-lease-time 7200;
-authoritative;
-log-facility local7;
-subnet 192.168.1.0 netmask 255.255.255.0 {
-    range 192.168.1.100 192.168.1.120;
-    option subnet-mask 255.255.255.0;
-    option broadcast-address 192.168.1.255;
-    option routers 192.168.1.254;
-    interface eth1;
-}
-subnet 192.168.2.0 netmask 255.255.255.0 {
-    range 192.168.2.100 192.168.2.120;
-    option subnet-mask 255.255.255.0;
-    option broadcast-address 192.168.1.255;
-    option routers 192.168.1.254;
-    interface eth1;
-}
-subnet 192.168.2.0 netmask 255.255.255.0 {
-    range 192.168.2.100 192.168.2.120;
-    option subnet-mask 255.255.255.0;
-    option broadcast-address 192.168.2.255;
-    option routers 192.168.2.254;
-    interface eth2;
-}
+`# Le fichier contient (aide dans les commentaires)`
+`ddns-update-style none;`
+`# DNS de Google`
+`# Si la machine sert de DNS`
+`default-lease-time 600;`
+`max-lease-time 7200;`
+`authoritative;`
+`log-facility local7;`
+`subnet 192.168.1.0 netmask 255.255.255.0 {`
+`    range 192.168.1.100 192.168.1.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.1.255;`
+`    option routers 192.168.1.254;`
+`    interface eth1;`
+`}`
+`subnet 192.168.2.0 netmask 255.255.255.0 {`
+`    range 192.168.2.100 192.168.2.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.1.255;`
+`    option routers 192.168.1.254;`
+`    interface eth1;`
+`}`
+`subnet 192.168.2.0 netmask 255.255.255.0 {`
+`    range 192.168.2.100 192.168.2.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.2.255;`
+`    option routers 192.168.2.254;`
+`    interface eth2;`
+`}`
 
-host serveurweb {
-        hardware ethernet 08:00:27:2d:11:7a;
-        fixed-address 192.168.2.10;
-}
+`host serveurweb {`
+`        hardware ethernet 08:00:27:2d:11:7a;`
+`        fixed-address 192.168.2.10;`
+`}`
 
 sudo service isc-dhcp-server restart
 
@@ -108,13 +116,13 @@ sudo nano /etc/network/interfaces :
 
 
 **Sur la VM Serveur_web :
-service networking restart
-ifconfig pour vérifier s'il a bien pris l'adresse écrit.
+`service networking restart`
+`ifconfig pour vérifier s'il a bien pris l'adresse écrit.`
 
 **Sur la VM Serveur_web :
-service networking restart
-ifconfigeth1 pour vérifier s'il a bien pris l'adresse écrit. (grace à la mac adress (option hagrdware))
-ifconfigeth2 pour vérifier s'il a bien pris l'adresse écrit.
+`service networking restart`
+`ifconfigeth1 pour vérifier s'il a bien pris l'adresse écrit. (grace à la mac adress (option hagrdware))`
+`ifconfigeth2 pour vérifier s'il a bien pris l'adresse écrit.`
 
 
 Configuration du réseau de Serveur web :
@@ -130,8 +138,8 @@ réseau NAT, nom natnetwork2
 deux réseau nat network:
 natnetwork1, natnetwork2
 
-sources:
-https://www.molivier.com/isc-dhcp-server-debian.html
+*Sources:*
+<https://www.molivier.com/isc-dhcp-server-debian.html>
 
 ##TP3
 =====
