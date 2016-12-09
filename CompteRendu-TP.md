@@ -61,61 +61,61 @@ fichier de base garder.
 GATEAWAY
 `nano /etc/dhcp/dhcp.conf :`
 
-<>
-	# Le fichier contient (aide dans les commentaires)
-	ddns-update-style none;
-	# DNS de Google
-	# Si la machine sert de DNS
-	default-lease-time 600;
-	max-lease-time 7200;
-	authoritative;
-	log-facility local7;
-	subnet 192.168.1.0 netmask 255.255.255.0 {
-	    range 192.168.1.100 192.168.1.120;
-	    option subnet-mask 255.255.255.0;
-	    option broadcast-address 192.168.1.255;
-	    option routers 192.168.1.254;
-	    interface eth1;
-	}
-	subnet 192.168.2.0 netmask 255.255.255.0 {
-	    range 192.168.2.100 192.168.2.120;
-	    option subnet-mask 255.255.255.0;
-	    option broadcast-address 192.168.1.255;
-	    option routers 192.168.1.254;
-	    interface eth1;
-	}
-	subnet 192.168.2.0 netmask 255.255.255.0 {
-	    range 192.168.2.100 192.168.2.120;
-	    option subnet-mask 255.255.255.0;
-	    option broadcast-address 192.168.2.255;
-	    option routers 192.168.2.254;
-	    interface eth2;
-	}
-	host serveurweb {
-		hardware ethernet 08:00:27:2d:11:7a;
-		fixed-address 192.168.2.10;
-	}
-<>
-`sudo service isc-dhcp-server restart`
+`# Le fichier contient (aide dans les commentaires)`
+`ddns-update-style none;`
+`# DNS de Google`
+`# Si la machine sert de DNS`
+`default-lease-time 600;`
+`max-lease-time 7200;`
+`authoritative;`
+`log-facility local7;`
+`subnet 192.168.1.0 netmask 255.255.255.0 {`
+`    range 192.168.1.100 192.168.1.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.1.255;`
+`    option routers 192.168.1.254;`
+`    interface eth1;`
+`}`
+`subnet 192.168.2.0 netmask 255.255.255.0 {`
+`    range 192.168.2.100 192.168.2.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.1.255;`
+`    option routers 192.168.1.254;`
+`    interface eth1;`
+`}`
+`subnet 192.168.2.0 netmask 255.255.255.0 {`
+`    range 192.168.2.100 192.168.2.120;`
+`    option subnet-mask 255.255.255.0;`
+`    option broadcast-address 192.168.2.255;`
+`    option routers 192.168.2.254;`
+`    interface eth2;`
+`}`
+
+`host serveurweb {`
+`        hardware ethernet 08:00:27:2d:11:7a;`
+`        fixed-address 192.168.2.10;`
+`}`
+
+sudo service isc-dhcp-server restart
 
 client et serveur_web (que les trois premieres lignes)
-`sudo nano /etc/network/interfaces :`
+sudo nano /etc/network/interfaces :
 
-<>
-	# The primary network interface
-	allow-hotplug eth0
-	iface eth0 inet dhcp
 
-	allow-hotplug eth1
-	iface eth1 inet static
-	        address 192.168.1.254
-	        netmask 255.255.255.0
+`# The primary network interface`
+`allow-hotplug eth0`
+`iface eth0 inet dhcp`
 
-	allow-hotplug eth2
-	iface eth2 inet static
-	        address 192.168.2.254
-	        netmask 255.255.255.0
-<>
+`allow-hotplug eth1`
+`iface eth1 inet static`
+`        address 192.168.1.254`
+`        netmask 255.255.255.0`
+
+`allow-hotplug eth2`
+`iface eth2 inet static`
+`        address 192.168.2.254`
+`        netmask 255.255.255.0`
+
 
 **Sur la VM Serveur_web :
 `service networking restart`
