@@ -5,31 +5,31 @@
 -----
 
 ####HYPERVISEUR VIRTUAL BOX & MACHINE VIRTUELLE
-Installation de la machine virtuel Debian dans VirtualBox.
-Installation des packets (sous root) aptitude  install lynx sudo tcpdump vim.
+Installation de la machine virtuel Debian dans VirtualBox.  
+Installation des packets (sous root) aptitude  install lynx sudo tcpdump vim.  
 
 ####SUDO
-Prise d'information sur commande sudo.
-Droit d'accès sudo pour notre utilisateur:
-	- visudo (et non vim /etc/sudoers) qui permet d'éditer le fichier /etc/sudoers
-	- rajouter la ligne: nomutilisateur ALL=(ALL:ALL) ALL
-	- enregistrer et relancer le service sudo (service sudo restart)
-	- tester si l'utilisateur a bien les droit de sudo
-Nom des groupes de l'utilisateur (avec la commande groups):
-	- cdrom		- floppy	- audio		- dip
-	- video		- plugdev	- netdev	- bluetooth
+Prise d'information sur commande sudo.  
+Droit d'accès sudo pour notre utilisateur:  
+	- visudo (et non vim /etc/sudoers) qui permet d'éditer le fichier /etc/sudoers  
+	- rajouter la ligne: nomutilisateur ALL=(ALL:ALL) ALL  
+	- enregistrer et relancer le service sudo (service sudo restart)  
+	- tester si l'utilisateur a bien les droit de sudo  
+Nom des groupes de l'utilisateur (avec la commande groups):  
+	- cdrom		- floppy	- audio		- dip  
+	- video		- plugdev	- netdev	- bluetooth  
 
 ####CLONAGE
 Pour faire un clone de la VM "debian_base", il suffi de faire un clic droit sur celle-ci et de cliquer sur "Cloner" (ou raccourci Ctrl+O).
 
 ####SNAPSHOT
-rm -rf / (cette ligne de commande supprime tout les fichiers)
-En essayant de relancer le snapshot, on tombe sur grub rescue puisque tout à été supprimer au préalable.
-Il suffi de restaurer le snapshot "Avant rm" afin de pouvoir relancer la VM.
+rm -rf / (cette ligne de commande supprime tout les fichiers)  
+En essayant de relancer le snapshot, on tombe sur grub rescue puisque tout à été supprimer au préalable.  
+Il suffi de restaurer le snapshot "Avant rm" afin de pouvoir relancer la VM.  
 
 ####CONFIGURATION RÉSEAUX
-Après avoir éxecuter les commandes (ip addr, lynx), on tombre sur une page qui nous demande de s'identifier avec nos username et mot de passe. Un e fois fait, il suffit de faire shift+G (Aller à) pour rechercher la page https://www.duckduckgo.com. De la même manière, on peut se connecter à la page https://www.startpage.com on observe alors que cette page est en faite notre page d'acceuil sur un navigateur web affiché seulement en ligne de commande (sans graphique).
-On constate que l'on peut naviguer sur internet avec des lignes de commandes lorsqu'on possède unsystème d'exploitation sans interface graphique.
+Après avoir éxecuter les commandes (ip addr, lynx), on tombre sur une page qui nous demande de s'identifier avec nos username et mot de passe. Un e fois fait, il suffit de faire shift+G (Aller à) pour rechercher la page https://www.duckduckgo.com. De la même manière, on peut se connecter à la page https://www.startpage.com on observe alors que cette page est en faite notre page d'acceuil sur un navigateur web affiché seulement en ligne de commande (sans graphique).  
+On constate que l'on peut naviguer sur internet avec des lignes de commandes lorsqu'on possède unsystème d'exploitation sans interface graphique.  
 
 -----
 ##TP2
@@ -57,12 +57,12 @@ En réessayant la connection ssh quentin@192.168.99.132 sur le terminal, on obse
 Note : On ne peut être connecter à internet avec la VM et l'ordinateur en même temps ?
 
 7)
-**Sur le terminal de l'odrinateur (en ssh)
-`mv dhcpd.conf dhcpd.conf.old`
-(pour expliquer option)
+**Sur le terminal de l'odrinateur (en ssh)  
+`mv dhcpd.conf dhcpd.conf.old` 
+(pour expliquer option)  
 fichier de base garder.
 
-GATEAWAY
+GATEAWAY  
 `nano /etc/dhcp/dhcp.conf :`
 
 	# Le fichier contient (aide dans les commentaires)
@@ -100,10 +100,10 @@ GATEAWAY
 		fixed-address 192.168.2.10;
 	}
 
-sudo service isc-dhcp-server restart
+`sudo service isc-dhcp-server restart`
 
-client et serveur_web (que les trois premieres lignes)
-sudo nano /etc/network/interfaces :
+CLIENT et SERVEUR_WEB (que les trois premieres lignes)  
+`sudo nano /etc/network/interfaces` :
 
 
 	# The primary network interface
@@ -121,28 +121,28 @@ sudo nano /etc/network/interfaces :
 	        netmask 255.255.255.0
 
 
-**Sur la VM Serveur_web :
-`service networking restart`
+**Sur la VM Serveur_web :  
+`service networking restart`  
 ifconfig pour vérifier s'il a bien pris l'adresse écrit.
 
-**Sur la VM Serveur_web :
-`service networking restart`
-ifconfigeth1 pour vérifier s'il a bien pris l'adresse écrit. (grace à la mac adress (option hagrdware))
+**Sur la VM Serveur_web :  
+`service networking restart`  
+ifconfigeth1 pour vérifier s'il a bien pris l'adresse écrit. (grace à la mac adress (option hagrdware))  
 ifconfigeth2 pour vérifier s'il a bien pris l'adresse écrit.
 
 
-Configuration du réseau de Serveur web :
+Configuration du réseau de Serveur web :  
 réseau en NAT, nom natNetwork2
 
-Configuration du réseau de Gateaway : (3 cartes réseau)
-la premiere:
-réseau acces par pont, nom enp0s25
-la deuxieme:
-réseau NAT, nom natnetwork1
-la troisieme:
-réseau NAT, nom natnetwork2
-deux réseau nat network:
-natnetwork1, natnetwork2
+Configuration du réseau de Gateaway : (3 cartes réseau)  
+la premiere:  
+réseau acces par pont, nom enp0s25  
+la deuxieme:  
+réseau NAT, nom natnetwork1  
+la troisieme:  
+réseau NAT, nom natnetwork2  
+deux réseau nat network:  
+natnetwork1, natnetwork2  
 
 *Sources:*
 <https://www.molivier.com/isc-dhcp-server-debian.html>
