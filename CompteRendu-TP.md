@@ -31,7 +31,7 @@ Après avoir éxecuter les commandes (ip addr, lynx), on tombre sur une page qui
 On constate que l'on peut naviguer sur internet avec des lignes de commandes lorsqu'on possède unsystème d'exploitation sans interface graphique.
 
 ##TP2
-=====
+-----
 ####FEUILLE DE ROUTE
 
 0) Configuration de la carte réseau de la VM "Gateway" en mode d'accès réseau par pont.
