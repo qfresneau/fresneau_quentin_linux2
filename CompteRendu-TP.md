@@ -1,9 +1,10 @@
 # Compte-rendu TP Linux 2
 *************************
 
-##TP1
-
 -----
+##TP1
+-----
+
 ####HYPERVISEUR VIRTUAL BOX & MACHINE VIRTUELLE
 Installation de la machine virtuel Debian dans VirtualBox.
 Installation des packets (sous root) aptitude  install lynx sudo tcpdump vim.
@@ -30,11 +31,11 @@ Il suffi de restaurer le snapshot "Avant rm" afin de pouvoir relancer la VM.
 ####CONFIGURATION RÉSEAUX
 Après avoir éxecuter les commandes (ip addr, lynx), on tombre sur une page qui nous demande de s'identifier avec nos username et mot de passe. Un e fois fait, il suffit de faire shift+G (Aller à) pour rechercher la page https://www.duckduckgo.com. De la même manière, on peut se connecter à la page https://www.startpage.com on observe alors que cette page est en faite notre page d'acceuil sur un navigateur web affiché seulement en ligne de commande (sans graphique).
 On constate que l'on peut naviguer sur internet avec des lignes de commandes lorsqu'on possède unsystème d'exploitation sans interface graphique.
------
 
+-----
 ##TP2
-
 -----
+
 ####FEUILLE DE ROUTE
 
 0) Configuration de la carte réseau de la VM "Gateway" en mode d'accès réseau par pont.
@@ -145,8 +146,7 @@ natnetwork1, natnetwork2
 
 *Sources:*
 <https://www.molivier.com/isc-dhcp-server-debian.html>
+
 -----
-
 ##TP3
-
 -----
